@@ -1,11 +1,11 @@
-package docker_credentials_test
+# docker\_credentials
+Get stored username and password from docker.
 
-import (
-	"fmt"
+[![Go Report Card](https://goreportcard.com/badge/github.com/lovego/docker_credentials?1)](https://goreportcard.com/report/github.com/lovego/docker_credentials)
+[![GoDoc](https://godoc.org/github.com/lovego/docker_credentials?status.svg)](https://godoc.org/github.com/lovego/docker_credentials)
 
-	"github.com/lovego/docker_credentials"
-)
-
+## usage
+```go
 func ExampleOf() {
 	fmt.Println(docker_credentials.Of("index.docker.io"))
 	// Output: username password <nil>
@@ -24,3 +24,4 @@ func ExampleCredentials_New() {
 	}
 	// Output: username password <nil>
 }
+```

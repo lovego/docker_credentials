@@ -36,10 +36,10 @@ func Get() (Credentials, error) {
 	} else {
 		home = `HOME`
 	}
-	return GetFromFile(filepath.Join(os.Getenv(home), `.docker`, `config.json`))
+	return File(filepath.Join(os.Getenv(home), `.docker`, `config.json`))
 }
 
-func GetFromFile(path string) (Credentials, error) {
+func File(path string) (Credentials, error) {
 	var creds Credentials
 	_, err := os.Stat(path)
 	if os.IsNotExist(err) {
@@ -48,9 +48,16 @@ func GetFromFile(path string) (Credentials, error) {
 		return creds, err
 	}
 
-	if content, err := ioutil.ReadFile(path); err != nil {
+	content, err := ioutil.ReadFile(path)
+	if err != nil {
 		return creds, err
-	} else if err := json.Unmarshal(content, &creds); err != nil {
+	}
+	return New(content)
+}
+
+func New(content []byte) (Credentials, error) {
+	var creds Credentials
+	if err := json.Unmarshal(content, &creds); err != nil {
 		return creds, err
 	}
 	return creds, nil
