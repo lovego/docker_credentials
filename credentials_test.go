@@ -11,7 +11,7 @@ func ExampleOf() {
 	// Output: username password <nil>
 }
 
-func ExampleCredentials_New() {
+func ExampleNew() {
 	c, err := docker_credentials.New([]byte(`{
 	"auths": {
 		"https://index.docker.io/v1/": { "auth": "dXNlcm5hbWU6cGFzc3dvcmQ=" }
